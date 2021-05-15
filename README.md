@@ -24,6 +24,7 @@ The following is a list of features planned and/or already added to the current 
 * Settings [ ]
 * Info [ ]
 * Environmental tips [ ]
+* Multiple languages [ ]
 
 ## Requirements
 
