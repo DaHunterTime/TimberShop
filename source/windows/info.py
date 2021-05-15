@@ -36,6 +36,6 @@ class InfoScreen(QWidget):
         vbox = QVBoxLayout()
         vbox.addWidget(self.title)
         vbox.addLayout(hbox_description)
-        vbox.addLayout(hbox_business)
+        vbox.addLayout(hbox_business)  # Temporary
 
         self.setLayout(vbox)
