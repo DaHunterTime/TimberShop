@@ -3,6 +3,9 @@ from PyQt5.QtCore import pyqtSignal
 
 from .start import StartScreen
 from .main_menu import MainMenu
+from .cart import CartScreen
+from .account import AccountScreen
+from .settings import SettingsScreen
 from .info import InfoScreen
 
 
@@ -18,6 +21,9 @@ class AppFrame(QMainWindow):
         # Screens & Menus
         self.start_screen = StartScreen(self)
         self.main_menu = Wrapper(MainMenu, self)
+        self.cart_menu = Wrapper(CartScreen, self)
+        self.account_menu = Wrapper(AccountScreen, self)
+        self.settings_menu = Wrapper(SettingsScreen, self)
         self.info_screen = Wrapper(InfoScreen, self)
 
         self.scroll_area = QScrollArea(self)
@@ -29,6 +35,9 @@ class AppFrame(QMainWindow):
         # Connecting signals
         # Navigation buttons
         self.main_menu.navigation.connect_buttons_signal.connect(self.connect_navigation)
+        self.cart_menu.navigation.connect_buttons_signal.connect(self.connect_navigation)
+        self.account_menu.navigation.connect_buttons_signal.connect(self.connect_navigation)
+        self.settings_menu.navigation.connect_buttons_signal.connect(self.connect_navigation)
         self.info_screen.navigation.connect_buttons_signal.connect(self.connect_navigation)
 
         # Sign in/up
@@ -37,6 +46,9 @@ class AppFrame(QMainWindow):
 
         # Connect navigation buttons
         self.main_menu.navigation.connect_buttons()
+        self.cart_menu.navigation.connect_buttons()
+        self.account_menu.navigation.connect_buttons()
+        self.settings_menu.navigation.connect_buttons()
         self.info_screen.navigation.connect_buttons()
 
         self.show()
@@ -59,25 +71,70 @@ class AppFrame(QMainWindow):
     def go_home(self):
         widget = self.scroll_area.takeWidget()
 
-        if type(widget.class_) == InfoScreen:
+        if type(widget.class_) == CartScreen:
+            self.cart_menu = widget
+        elif type(widget.class_) == AccountScreen:
+            self.account_menu = widget
+        elif type(widget.class_) == SettingsScreen:
+            self.settings_menu = widget
+        elif type(widget.class_) == InfoScreen:
             self.info_screen = widget
 
         self.scroll_area.setWidget(self.main_menu)
 
     def go_cart(self):
-        pass
+        widget = self.scroll_area.takeWidget()
+
+        if type(widget.class_) == MainMenu:
+            self.main_menu = widget
+        elif type(widget.class_) == AccountScreen:
+            self.account_menu = widget
+        elif type(widget.class_) == SettingsScreen:
+            self.settings_menu = widget
+        elif type(widget.class_) == InfoScreen:
+            self.info_screen = widget
+
+        self.scroll_area.setWidget(self.cart_menu)
 
     def go_account(self):
-        pass
+        widget = self.scroll_area.takeWidget()
+
+        if type(widget.class_) == MainMenu:
+            self.main_menu = widget
+        elif type(widget.class_) == CartScreen:
+            self.cart_menu = widget
+        elif type(widget.class_) == SettingsScreen:
+            self.settings_menu = widget
+        elif type(widget.class_) == InfoScreen:
+            self.info_screen = widget
+
+        self.scroll_area.setWidget(self.account_menu)
 
     def go_settings(self):
-        pass
+        widget = self.scroll_area.takeWidget()
+
+        if type(widget.class_) == MainMenu:
+            self.main_menu = widget
+        elif type(widget.class_) == CartScreen:
+            self.cart_menu = widget
+        elif type(widget.class_) == AccountScreen:
+            self.account_menu = widget
+        elif type(widget.class_) == InfoScreen:
+            self.info_screen = widget
+
+        self.scroll_area.setWidget(self.settings_menu)
 
     def go_info(self):
         widget = self.scroll_area.takeWidget()
 
         if type(widget.class_) == MainMenu:
             self.main_menu = widget
+        elif type(widget.class_) == CartScreen:
+            self.cart_menu = widget
+        elif type(widget.class_) == AccountScreen:
+            self.account_menu = widget
+        elif type(widget.class_) == SettingsScreen:
+            self.settings_menu = widget
 
         self.scroll_area.setWidget(self.info_screen)
 
@@ -93,7 +150,7 @@ class NavigationDock(QWidget):
         # Change button names to icons
         self.home_button = QPushButton("Inicio", self)
 
-        self.cart_button = QPushButton("carrito", self)
+        self.cart_button = QPushButton("Carrito", self)
 
         self.account_button = QPushButton("Mi Cuenta", self)
 
