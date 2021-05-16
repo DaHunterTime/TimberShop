@@ -7,10 +7,11 @@ from PyQt5.QtCore import Qt, pyqtSignal
 class ProductScreen(QWidget):
     add_product_signal = pyqtSignal(dict)
 
-    def __init__(self, data, parent=None):
+    def __init__(self, data, tips, parent=None):
         super().__init__(parent=parent)
         self.product_name = data["name"]
         self.unit_price = data["price"]
+        self.tips = tips
         self.init_UI(data)
 
     def init_UI(self, info):
@@ -25,6 +26,9 @@ class ProductScreen(QWidget):
         self.quantity = QSpinBox(self)
         self.quantity.setRange(1, 2147483647)
 
+        self.tip_label = QLabel(f"Tip: {self.tips.new_tip()}", self)
+        self.tip_label.setAlignment(Qt.AlignCenter)
+
         self.buy_button = QPushButton("Agregar al carrito", self)
         self.buy_button.clicked.connect(self.add_to_cart)
 
@@ -36,6 +40,7 @@ class ProductScreen(QWidget):
         vbox.addWidget(self.back_button, alignment=Qt.AlignTop | Qt.AlignLeft)
         vbox.addWidget(self.name)
         vbox.addWidget(self.description)
+        vbox.addWidget(self.tip_label)
         vbox.addLayout(hbox)
         vbox.addWidget(self.buy_button, alignment=Qt.AlignBottom | Qt.AlignCenter)
 
@@ -46,11 +51,14 @@ class ProductScreen(QWidget):
                 "quantity": self.quantity.value()}
         self.add_product_signal.emit(info)
 
+    def change_tip(self):
+        self.tip_label.setText(f"{self.tips.new_tip()}")
+
 
 class ProductOverview(QPushButton):
     set_screen_signal = pyqtSignal(ProductScreen)
 
-    def __init__(self, path, parent=None):
+    def __init__(self, path, tips, parent=None):
         super().__init__(parent=parent)
 
         with open(path, "rb") as file:
@@ -58,7 +66,7 @@ class ProductOverview(QPushButton):
 
         self.init_UI(info)
 
-        self.screen = ProductScreen(info, parent)
+        self.screen = ProductScreen(info, tips, parent)
 
     def init_UI(self, info):
         self.setText(f"{info['name']} ${info['price']}")

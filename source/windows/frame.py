@@ -24,7 +24,7 @@ class AppFrame(QMainWindow):
 
         # Screens & Menus
         self.start_screen = StartScreen(self)
-        self.main_menu = Wrapper(MainMenu, self)
+        self.main_menu = Wrapper(MainMenu, self, self.tips)
         self.cart_menu = Wrapper(CartScreen, self, self.tips)
         self.account_menu = Wrapper(AccountScreen, self)
         self.settings_menu = Wrapper(SettingsScreen, self)
@@ -90,6 +90,7 @@ class AppFrame(QMainWindow):
 
     def go_product(self, screen):
         self.main_menu = self.scroll_area.takeWidget()
+        screen.change_tip()
         self.scroll_area.setWidget(screen)
 
     def go_home(self):
