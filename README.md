@@ -26,7 +26,7 @@ The following is a list of features planned and/or already added to the current 
 - [x] Environmental tips
 - [ ] Multiple languages
 
-Some features can appear as "done", but may still be incomplete in practice
+Some features can appear as "done", but may still be incomplete in practice.
 
 ## Requirements
 
