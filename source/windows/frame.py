@@ -55,6 +55,7 @@ class AppFrame(QMainWindow):
         for product in self.main_menu.class_.products.items:
             product.screen.back_button.clicked.connect(self.go_back)
             product.set_screen_signal.connect(self.go_product)
+            product.screen.add_product_signal.connect(self.cart_menu.class_.add_product)
 
         self.show()
 
