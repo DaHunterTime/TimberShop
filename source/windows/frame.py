@@ -51,6 +51,11 @@ class AppFrame(QMainWindow):
         self.settings_menu.navigation.connect_buttons()
         self.info_screen.navigation.connect_buttons()
 
+        # Connect products buttons
+        for product in self.main_menu.class_.products.items:
+            product.screen.back_button.clicked.connect(self.go_back)
+            product.set_screen_signal.connect(self.go_product)
+
         self.show()
 
     def sign_in(self):
@@ -67,6 +72,20 @@ class AppFrame(QMainWindow):
         buttons["account"].clicked.connect(self.go_account)
         buttons["settings"].clicked.connect(self.go_settings)
         buttons["info"].clicked.connect(self.go_info)
+
+    def go_back(self):
+        widget = self.scroll_area.takeWidget()
+
+        for index, product in enumerate(self.main_menu.class_.products.items):
+            if product.screen == widget:
+                self.main_menu.class_.products.items[index] = widget
+                break
+
+        self.scroll_area.setWidget(self.main_menu)
+
+    def go_product(self, screen):
+        self.main_menu = self.scroll_area.takeWidget()
+        self.scroll_area.setWidget(screen)
 
     def go_home(self):
         widget = self.scroll_area.takeWidget()
