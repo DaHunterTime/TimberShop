@@ -7,6 +7,7 @@ from .cart import CartScreen
 from .account import AccountScreen
 from .settings import SettingsScreen
 from .info import InfoScreen
+from .tips import Tips
 
 
 class AppFrame(QMainWindow):
@@ -18,10 +19,13 @@ class AppFrame(QMainWindow):
         self.setWindowTitle("TimberShop App Prototype")
         self.setFixedSize(440, 620)
 
+        # Environmental tips
+        self.tips = Tips()
+
         # Screens & Menus
         self.start_screen = StartScreen(self)
         self.main_menu = Wrapper(MainMenu, self)
-        self.cart_menu = Wrapper(CartScreen, self)
+        self.cart_menu = Wrapper(CartScreen, self, self.tips)
         self.account_menu = Wrapper(AccountScreen, self)
         self.settings_menu = Wrapper(SettingsScreen, self)
         self.info_screen = Wrapper(InfoScreen, self)
@@ -114,6 +118,7 @@ class AppFrame(QMainWindow):
         elif type(widget.class_) == InfoScreen:
             self.info_screen = widget
 
+        self.cart_menu.class_.change_tip()
         self.scroll_area.setWidget(self.cart_menu)
 
     def go_account(self):
@@ -196,9 +201,9 @@ class NavigationDock(QWidget):
 
 
 class Wrapper(QWidget):
-    def __init__(self, class_, parent=None):
+    def __init__(self, class_, parent=None, *args):
         super().__init__(parent=parent)
-        self.class_ = class_(parent)
+        self.class_ = class_(*args, parent)
         self.navigation = NavigationDock(parent)
 
         vbox = QVBoxLayout()

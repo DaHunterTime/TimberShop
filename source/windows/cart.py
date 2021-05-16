@@ -6,9 +6,10 @@ from PyQt5.QtCore import Qt, pyqtSignal
 
 
 class CartScreen(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, tips, parent=None):
         super().__init__(parent=parent)
         self.total_price = 0
+        self.tips = tips
         self.init_UI()
 
     def init_UI(self):
@@ -22,6 +23,9 @@ class CartScreen(QWidget):
 
         self.final_price = QLabel(f"Precio total: ${self.total_price}", self)
 
+        self.tip_label = QLabel(f"Tip: {self.tips.new_tip()}", self)
+        self.tip_label.setAlignment(Qt.AlignCenter)
+
         self.buy_button = QPushButton("Comprar", self)
         self.buy_button.clicked.connect(self.buy_products)
 
@@ -29,6 +33,7 @@ class CartScreen(QWidget):
         vbox.addWidget(self.title)
         vbox.addWidget(self.products_scroll)
         vbox.addWidget(self.final_price)
+        vbox.addWidget(self.tip_label)
         vbox.addWidget(self.buy_button)
 
         self.setLayout(vbox)
@@ -56,6 +61,9 @@ class CartScreen(QWidget):
     def set_price(self, price):
         self.total_price = price
         self.final_price.setText(f"Precio total: ${self.total_price}")
+
+    def change_tip(self):
+        self.tip_label.setText(f"{self.tips.new_tip()}")
 
 
 class ProductSummary(QWidget):
