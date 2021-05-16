@@ -40,7 +40,7 @@ class ProductsManager(QWidget):
     def init_UI(self):
         vbox = QVBoxLayout()
 
-        with open("products/data.txt", "r") as file:
+        with open("products/data.txt", "r", encoding="utf-8") as file:
             for line in file:
                 line = line.strip()
                 product = ProductOverview(line)
