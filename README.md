@@ -12,19 +12,19 @@ The application in question is about selling and buying certified carbon neutral
 
 The following is a list of features planned and/or already added to the current version.
 
-* Sign in/Sign up screen [X]
-* Main menu [ ]
-    * Search bar [ ]
-    * Products page [X]
-* My cart [ ]
-    * Products summary [ ]
-    * Final price [ ]
-    * Purchase button [ ]
-* My account [X]
-* Settings [ ]
-* Info [X]
-* Environmental tips [ ]
-* Multiple languages [ ]
+- [x] Sign in/Sign up screen
+- [ ] Main menu
+    - [ ] Search bar
+    - [x] Products page
+- [ ] My cart
+    - [ ] Products summary
+    - [ ] Final price
+    - [ ] Purchase button
+- [x] My account
+- [ ] Settings
+- [x] Info
+- [ ] Environmental tips
+- [ ] Multiple languages
 
 Some features can appear as "done", but may still be incomplete in practice
 
