@@ -17,8 +17,8 @@ The following is a list of features planned and/or already added to the current 
     - [ ] Search bar
     - [x] Products page
 - [ ] My cart
-    - [ ] Products summary
-    - [ ] Final price
+    - [x] Products summary
+    - [x] Final price
     - [ ] Purchase button
 - [x] My account
 - [ ] Settings
