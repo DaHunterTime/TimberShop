@@ -28,7 +28,7 @@ class StartScreen(QWidget):
         self.sign_up_button.setStyleSheet("background-color: none;")
         self.sign_up_button.clicked.connect(self.sign_up)
 
-        self.prototype_version = QLabel("V0.7.5", self)
+        self.prototype_version = QLabel("V0.7.6", self)
         self.prototype_version.setAlignment(Qt.AlignBottom | Qt.AlignLeft)
 
         vbox = QVBoxLayout()
