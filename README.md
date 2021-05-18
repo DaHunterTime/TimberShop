@@ -4,7 +4,7 @@
 
 TimberShop is a prototype of an app being developed for the course "ING2030 - Investigación, Innovación y Emprendimiento" from the Pontificia Universidad Católica de Chile.
 
-It's objective is to serve as a guide for an idea of a mobile app and is in now way intended as a commercial product and should not be treated as such.
+It's objective is to serve as a guide for an idea of a mobile app and is in no way intended as a commercial product and should not be treated as such.
 
 The application in question is about selling and buying certified carbon neutral timber and pellets for heating or other energy related uses.
 
