@@ -4,12 +4,15 @@ from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButt
                             QScrollArea
 from PyQt5.QtCore import Qt, pyqtSignal
 
+from logic import OrderGenerator
+
 
 class CartScreen(QWidget):
     def __init__(self, tips, parent=None):
         super().__init__(parent=parent)
         self.total_price = 0
         self.tips = tips
+        self.orders = OrderGenerator("orders/orders.csv")
         self.init_UI()
 
     def init_UI(self):
@@ -48,7 +51,11 @@ class CartScreen(QWidget):
         product.update_price_signal.connect(self.update_price)
 
     def buy_products(self):
-        # Incomplete
+        products = [x.name.text() for x in self.products_container.products]
+        quantities = [x.quantity.value() for x in self.products_container.products]
+        info = {"user": ["Usuario", "Ubicación"], "products": products, "quantities": quantities}
+        self.orders.write_order(info)
+
         for product in self.products_container.products[::]:
             self.products_container.delete_product(product)
 
@@ -80,16 +87,20 @@ class ProductSummary(QWidget):
 
     def init_UI(self, info):
         self.name = QLabel(f"{info['name']}", self)
+        self.name.setStyleSheet("font: 12px;")
 
         self.price = QLabel(f"${info['price']}", self)
+        self.price.setStyleSheet("font: 12px;")
 
         self.quantity = QSpinBox(self)
         self.quantity.setRange(1, 2147483647)
         self.quantity.setValue(info["quantity"])
+        self.quantity.setMaximumSize(60, 20)
         self.quantity.valueChanged.connect(self.change_price)
 
         self.delete_button = QPushButton("x", self)
         self.delete_button.clicked.connect(self.delete)
+        self.delete_button.setStyleSheet("font: 12px;")
 
         hbox = QHBoxLayout()
         hbox.addWidget(self.name)
