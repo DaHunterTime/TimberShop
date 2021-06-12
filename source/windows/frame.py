@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QMainWindow, QScrollArea, QWidget, QPushButton, QHBoxLayout, QVBoxLayout
+from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSignal
 
 from .start import StartScreen
@@ -173,16 +174,30 @@ class NavigationDock(QWidget):
         self.init_UI()
 
     def init_UI(self):
-        # Change button names to icons
-        self.home_button = QPushButton("Inicio", self)
+        self.home_button = QPushButton(self)
+        self.home_button.setIcon(QIcon("img/home.png"))
+        self.home_button.setToolTip("Inicio")
+        self.home_button.setStyleSheet("background-color: rgb(146, 237, 108);")
 
-        self.cart_button = QPushButton("Carrito", self)
+        self.cart_button = QPushButton(self)
+        self.cart_button.setIcon(QIcon("img/cart.png"))
+        self.cart_button.setToolTip("Carrito")
+        self.cart_button.setStyleSheet("background-color: rgb(146, 237, 108);")
 
-        self.account_button = QPushButton("Mi Cuenta", self)
+        self.account_button = QPushButton(self)
+        self.account_button.setIcon(QIcon("img/user.png"))
+        self.account_button.setToolTip("Mi Cuenta")
+        self.account_button.setStyleSheet("background-color: rgb(146, 237, 108);")
 
-        self.settings_button = QPushButton("Ajustes", self)
+        self.settings_button = QPushButton(self)
+        self.settings_button.setIcon(QIcon("img/settings.png"))
+        self.settings_button.setToolTip("Ajustes")
+        self.settings_button.setStyleSheet("background-color: rgb(146, 237, 108);")
 
-        self.info_button = QPushButton("Info", self)
+        self.info_button = QPushButton(self)
+        self.info_button.setIcon(QIcon("img/info.png"))
+        self.info_button.setToolTip("Información")
+        self.info_button.setStyleSheet("background-color: rgb(146, 237, 108);")
 
         self.buttons = {"home": self.home_button, "cart": self.cart_button,
                         "account": self.account_button, "settings": self.settings_button,

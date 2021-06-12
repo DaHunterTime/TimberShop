@@ -1,2 +1,3 @@
-products/test_1.json
-products/test_2.json
+products/saco_1.json
+products/saco_2.json
+products/metro_1.json

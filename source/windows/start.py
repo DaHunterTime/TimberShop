@@ -12,7 +12,7 @@ class StartScreen(QWidget):
         self.init_UI()
 
     def init_UI(self):
-        self.setStyleSheet("background-color: rgb(86, 255, 0);")
+        self.setStyleSheet("background-color: black;")
 
         pixels = QPixmap("img/logo.png")
         pixels = pixels.scaled(220, 220, Qt.KeepAspectRatio)
@@ -23,18 +23,23 @@ class StartScreen(QWidget):
         self.sign_in_button = QPushButton("Iniciar Sesión", self)
         self.sign_in_button.setStyleSheet("background-color: none;")
         self.sign_in_button.clicked.connect(self.sign_in)
+        self.sign_in_button.setMaximumWidth(200)
+        self.sign_in_button.setMinimumSize(150, 30)
 
         self.sign_up_button = QPushButton("Registrarse", self)
         self.sign_up_button.setStyleSheet("background-color: none;")
         self.sign_up_button.clicked.connect(self.sign_up)
+        self.sign_up_button.setMaximumWidth(200)
+        self.sign_up_button.setMinimumSize(150, 30)
 
-        self.prototype_version = QLabel("V0.7.6", self)
+        self.prototype_version = QLabel("V0.8.5", self)
         self.prototype_version.setAlignment(Qt.AlignBottom | Qt.AlignLeft)
+        self.prototype_version.setStyleSheet("color: white; font: 8px;")
 
         vbox = QVBoxLayout()
         vbox.addWidget(self.logo)
-        vbox.addWidget(self.sign_in_button)
-        vbox.addWidget(self.sign_up_button)
+        vbox.addWidget(self.sign_in_button, alignment=Qt.AlignCenter)
+        vbox.addWidget(self.sign_up_button, alignment=Qt.AlignCenter)
         vbox.addWidget(self.prototype_version)
 
         self.setLayout(vbox)

@@ -31,3 +31,8 @@ Some features can appear as "done", but may still be incomplete in practice.
 ## Requirements
 
 For the app to run it needs [python 3.7+](https://www.python.org/) and the [PyQt5](https://riverbankcomputing.com/software/pyqt/) library installed in your computer.
+
+## Resources
+
+Some images/icons use where extracted from:
+* [Flaticon](https://www.flaticon.com)

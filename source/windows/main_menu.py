@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QLineEdit, QPushButton, QHBoxLayout, QVBoxLayout, QScrollArea
+from PyQt5.QtGui import QIcon
 
 from .product import ProductOverview
 
@@ -12,8 +13,10 @@ class MainMenu(QWidget):
         self.search_bar = QLineEdit(self)
         self.search_bar.setPlaceholderText("Buscar tiendas o productos")
 
-        # Change button name with icon
-        self.search_button = QPushButton("Buscar", self)
+        self.search_button = QPushButton(self)
+        self.search_button.setIcon(QIcon("img/search.png"))
+        self.search_button.setToolTip("Buscar")
+        self.search_button.setStyleSheet("background-color: rgb(146, 237, 108);")
 
         hbox_search = QHBoxLayout()
         hbox_search.addWidget(self.search_bar)

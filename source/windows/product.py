@@ -1,6 +1,7 @@
 import json
 
 from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, QHBoxLayout, QVBoxLayout, QSpinBox
+from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtCore import Qt, pyqtSignal
 
 
@@ -21,6 +22,7 @@ class ProductScreen(QWidget):
         self.name.setAlignment(Qt.AlignCenter)
         self.description = QLabel(f"{info['description']}", self)
         self.description.setAlignment(Qt.AlignJustify)
+        self.description.setWordWrap(True)
         self.price = QLabel(f"Precio: ${info['price']}")
 
         self.quantity = QSpinBox(self)
@@ -38,10 +40,19 @@ class ProductScreen(QWidget):
 
         vbox = QVBoxLayout()
         vbox.addWidget(self.back_button, alignment=Qt.AlignTop | Qt.AlignLeft)
+
+        if info["icon"]:
+            self.icon = QLabel(self)
+            pixels = QPixmap(info["icon"])
+            pixels = pixels.scaled(100, 100, Qt.KeepAspectRatio)
+            self.icon.setPixmap(pixels)
+            self.icon.setAlignment(Qt.AlignCenter)
+            vbox.addWidget(self.icon)
+
         vbox.addWidget(self.name)
         vbox.addWidget(self.description)
-        vbox.addWidget(self.tip_label)
         vbox.addLayout(hbox)
+        vbox.addWidget(self.tip_label)
         vbox.addWidget(self.buy_button, alignment=Qt.AlignBottom | Qt.AlignCenter)
 
         self.setLayout(vbox)
@@ -69,6 +80,11 @@ class ProductOverview(QPushButton):
         self.screen = ProductScreen(info, tips, parent)
 
     def init_UI(self, info):
+        self.setStyleSheet("font: 15px; qproperty-iconSize: 50px;")
+
+        if info["icon"]:
+            self.setIcon(QIcon(info["icon"]))
+
         self.setText(f"{info['name']} ${info['price']}")
         self.clicked.connect(self.show_screen)
 
