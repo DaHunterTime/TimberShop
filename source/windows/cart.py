@@ -28,6 +28,7 @@ class CartScreen(QWidget):
 
         self.tip_label = QLabel(f"Tip: {self.tips.new_tip()}", self)
         self.tip_label.setAlignment(Qt.AlignCenter)
+        self.tip_label.setWordWrap(True)
 
         self.buy_button = QPushButton("Comprar", self)
         self.buy_button.clicked.connect(self.buy_products)

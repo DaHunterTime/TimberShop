@@ -32,7 +32,7 @@ class StartScreen(QWidget):
         self.sign_up_button.setMaximumWidth(200)
         self.sign_up_button.setMinimumSize(150, 30)
 
-        self.prototype_version = QLabel("V0.9.0", self)
+        self.prototype_version = QLabel("V0.9.1", self)
         self.prototype_version.setAlignment(Qt.AlignBottom | Qt.AlignLeft)
         self.prototype_version.setStyleSheet("color: white; font: 8px;")
 
