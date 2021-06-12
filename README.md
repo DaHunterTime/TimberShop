@@ -16,10 +16,10 @@ The following is a list of features planned and/or already added to the current 
 - [ ] Main menu
     - [ ] Search bar
     - [x] Products page
-- [ ] My cart
+- [x] My cart
     - [x] Products summary
     - [x] Final price
-    - [ ] Purchase button
+    - [x] Purchase button
 - [x] My account
 - [ ] Settings
 - [x] Info
