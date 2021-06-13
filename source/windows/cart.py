@@ -12,7 +12,7 @@ class CartScreen(QWidget):
         super().__init__(parent=parent)
         self.total_price = 0
         self.tips = tips
-        self.orders = OrderGenerator("orders/orders.csv")
+        self.orders = OrderGenerator("data/orders.csv")
         self.init_UI()
 
     def init_UI(self):

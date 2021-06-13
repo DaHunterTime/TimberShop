@@ -45,10 +45,6 @@ class AppFrame(QMainWindow):
         self.settings_menu.navigation.connect_buttons_signal.connect(self.connect_navigation)
         self.info_screen.navigation.connect_buttons_signal.connect(self.connect_navigation)
 
-        # Sign in/up
-        self.start_screen.sign_in_signal.connect(self.sign_in)
-        self.start_screen.sign_up_signal.connect(self.sign_up)
-
         # Connect navigation buttons
         self.main_menu.navigation.connect_buttons()
         self.cart_menu.navigation.connect_buttons()
@@ -65,12 +61,8 @@ class AppFrame(QMainWindow):
         self.show()
 
     def sign_in(self):
-        # temporary
         self.start_screen = self.scroll_area.takeWidget()
         self.scroll_area.setWidget(self.main_menu)
-
-    def sign_up(self):
-        pass
 
     def connect_navigation(self, buttons):
         buttons["home"].clicked.connect(self.go_home)
